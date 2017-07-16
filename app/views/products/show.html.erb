@@ -19,8 +19,8 @@
 
 
     <div class="pull-right">
-      <%= link_to("Add to Cart", "", class: "btn btn-lg btn-danger") %>
+      <%= link_to("Add to Cart", add_to_cart_product_path(@product), method: :post, class: "btn btn-lg btn-danger") %>
     </div>
-    
+
   </div>
 </div>

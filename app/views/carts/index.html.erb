@@ -31,7 +31,9 @@
             <td> <%= cart_item.product.price %></td>
             <td> <%= cart_item.product.quantity %></td>
             <td>
-              <%= link_to("Delete", cart_item_path(cart_item.product.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-se btn-danger") %>
+              <%= link_to cart_item_path(cart_item.product.id) do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
             </td>
         </tr>
       <% end %>

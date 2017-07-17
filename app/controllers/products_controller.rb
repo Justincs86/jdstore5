@@ -10,9 +10,13 @@ class ProductsController < ApplicationController
   def add_to_cart
     @product = Product.find(params[:id])
 
-    current_cart.add_product_to_cart(@product)
-    flash[:notice] = "Added to Cart"
-    redirect_to :back
+    if !current_cart.products.include?(@product)
+      current_cart.add_product_to_cart(@product)
+      flash[:notice] = "Added #{@product.id} to Cart"
+    else
+      flash[:warning] = "Already added product in cart!"
+    end
+      redirect_to :back
   end
 
 

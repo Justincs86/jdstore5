@@ -3,6 +3,11 @@
 
     <h2> Cart </h2>
 
+    <div class="pull-right" style="margin-bottom: 20px;">
+      <%= link_to("Delete All", clean_carts_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger") %>
+    </div>
+
+
     <table class="table table-bordered">
     <thead>
         <tr>

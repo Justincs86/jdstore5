@@ -28,6 +28,24 @@ class OrdersController < ApplicationController
     @product_lists = @order.product_lists
   end
 
+  def pay_with_wechatpay
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("wechatpay")
+    @order.pay!
+
+    redirect_to order_path(@order.token), notice: "Wechatpay Successful"
+  end
+
+  def pay_with_alipay
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("alipay")
+    @order.pay!
+
+    redirect_to order_path(@ordre.token), notice: "Wechatpay Successful"
+  end
+
+
+
   private
 
   def order_params

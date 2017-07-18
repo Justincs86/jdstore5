@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-12">
 
-    <h2> 订单明细 </h2>
+    <h2> Order Detail </h2>
 
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th width="80%">商品明细</th>
-          <th>单价</th>
+          <th width="80%">Product Detail</th>
+          <th>Price</th>
         </tr>
       </thead>
       <tbody>
@@ -28,19 +28,19 @@
 
     <div class="total clearfix">
       <span class="pull-right">
-        总计 <%= @order.total %> CNY
+        Total <%= @order.total %> CNY
       </span>
     </div>
 
      <hr>
 
-     <h2> 寄送资讯 </h2>
+     <h2> Mailling Infomation </h2>
 
      <table class="table table-striped table-bordered">
       <tbody>
         <tr>
           <td>
-            订购人
+            Purchaser
           </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <td>
-            收件人
+            Receiver
           </td>
         </tr>
         <tr>
@@ -60,5 +60,18 @@
         </tr>
       </tbody>
     </table>
+
+
+    <% if !@order.is_paid? %>
+      <div class="payment pull-right">
+        <%= link_to("Wechatpay", pay_with_wechatpay_order_path(@order.token), method: :post, class: "btn btn-lg btn-danger") %>
+        <%= link_to("Alipay", pay_with_alipay_order_path(@order.token), method: :post, class: "btn btn-lg btn-danger") %>
+      </div>
+    <% else %>
+      <h2 class="text-center"> Order is paid </h2>
+    <% end %>
+    
+    </div>
+
   </div>
 </div>

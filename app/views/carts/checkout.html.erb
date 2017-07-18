@@ -1,0 +1,55 @@
+<h1> Product Detail </h1>
+
+<table class="table table-bordered">
+  <thead>
+      <tr>
+          <th width="80%"> Product </th>
+          <th> Price </th>
+          <th> Quantity </th>
+      </tr>
+  </thead>
+  <tbody>
+      <% current_cart.cart_items.each do |cart_item| %>
+      <tr>
+          <td>  <%= link_to cart_item.product.title, product_path(cart_item.product) %></td>
+          <td> <%= cart_item.product.price %></td>
+          <td> <%= cart_item.quantity %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+
+  <div class="total">
+    <span class="pull-right">
+       Total <%= render_cart_total_price(current_cart) %>
+    </span>
+  </div>
+
+  <hr>
+
+  <h2> Order Detail </h1>
+
+  <% simple_form_for @order do |f| %>
+
+    <legend> Purchaser </legend>
+    <div class="col-lg-6">
+      <%= f.input :billing_name %>
+    </div>
+    <div class="col-lg-6">
+      <%= f.input :billing_address %>
+    </div>
+
+    <legend> Receiver </legend>
+    <div class="col-lg-6">
+      <%= f.input :shipping_name %>
+    </div>
+    <div class="col-lg">
+      <%= f.input :shipping_address %>
+    </div>
+
+    <div class="checkout">
+      <%= f.submit "Confirm Order", class: "btn btn-lg btn-danger pull-right", data: { disable_with: "Submitting...."} %>
+    </div>
+
+  <% end %>

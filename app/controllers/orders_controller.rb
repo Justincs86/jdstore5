@@ -16,6 +16,8 @@ class OrdersController < ApplicationController
         product_list.quantity      = cart_item.product.quantity
         product_list.save
       end
+      current_cart.clean!
+      OrderMailer.notify_order_placed(@order.token)
 
       redirect_to order_path(@order.token)
     else
@@ -41,7 +43,7 @@ class OrdersController < ApplicationController
     @order.set_payment_with!("alipay")
     @order.pay!
 
-    redirect_to order_path(@ordre.token), notice: "Wechatpay Successful"
+    redirect_to order_path(@order.token), notice: "Wechatpay Successful"
   end
 
 

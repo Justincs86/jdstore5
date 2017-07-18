@@ -30,7 +30,7 @@
 
   <h2> Order Detail </h1>
 
-  <% simple_form_for @order do |f| %>
+  <%= simple_form_for @order do |f| %>
 
     <legend> Purchaser </legend>
     <div class="col-lg-6">
@@ -44,7 +44,7 @@
     <div class="col-lg-6">
       <%= f.input :shipping_name %>
     </div>
-    <div class="col-lg">
+    <div class="col-lg-6">
       <%= f.input :shipping_address %>
     </div>
 

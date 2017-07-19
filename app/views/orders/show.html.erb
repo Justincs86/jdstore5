@@ -61,16 +61,21 @@
       </tbody>
     </table>
 
+    <div class="pull-left">
+      <% if @order.order_placed? || @order.paid? %>
+        <%= link_to("Cancel Order", apply_to_cancel_order_path(@order.token), method: :post, class: "btn btn-lg btn-danger") %>
+      <% end %>
+    </div>
 
     <% if !@order.is_paid? %>
       <div class="payment pull-right">
-        <%= link_to("Wechatpay", pay_with_wechatpay_order_path(@order.token), method: :post, class: "btn btn-lg btn-danger") %>
-        <%= link_to("Alipay", pay_with_alipay_order_path(@order.token), method: :post, class: "btn btn-lg btn-danger") %>
+        <%= link_to("Wechatpay", pay_with_wechatpay_order_path(@order.token), method: :post, class: "btn btn-lg btn-info") %>
+        <%= link_to("Alipay", pay_with_alipay_order_path(@order.token), method: :post, class: "btn btn-lg btn-info") %>
       </div>
     <% else %>
       <h2 class="text-center"> Order is paid </h2>
     <% end %>
-    
+
     </div>
 
   </div>

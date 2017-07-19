@@ -24,14 +24,14 @@ class Admin::OrdersController < ApplicationController
  end
 
  def return
-   @roder = Order.find(params[:id])
-   @order.return_good
+   @order = Order.find(params[:id])
+   @order.return_good!
    redirect_to :back
  end
 
  def cancel
    @order = Order.find(params[:id])
-   @order.cancel_order
+   @order.cancel_order!
    redirect_to :back
  end
 

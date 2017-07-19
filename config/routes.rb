@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         post :shipped
         post :return
         post :cancel
+     end
     end
   end
 

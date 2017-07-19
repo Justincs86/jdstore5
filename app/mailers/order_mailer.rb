@@ -15,4 +15,19 @@ class OrderMailer < ApplicationMailer
     mail(to: "admin@test.com", subject: "[JDStore] user #{@order.user.email} cancel #{@order.token} ")
   end
 
+  def notify_ship(order)
+    @order = order
+    @user  = order.user
+    @product_lists = @order.product_lists
+
+    mail(to: @user.email, subject: "[JDStore] your order #{@order.token} has been shipped")
+  end
+
+  def notify_cancel(order)
+    @order = order
+    @user  = order.user
+    @product_lists = @order.product_lists
+
+    mail(to: @user.email, subject: "[JDStore] your order#{@order.taken} has been cancel")
+  end
 end
